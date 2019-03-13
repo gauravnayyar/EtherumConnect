@@ -1,25 +1,33 @@
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const log4js = require('log4js');
 
+
+log4js.configure({
+    appenders: { app: { type: 'file', filename: './logs/app.log' } },
+    categories: { default: { appenders: ['app'], level: 'error' } }
+  });
+  
+var logger = log4js.getLogger('app');
+ 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var smartContractRoute=require('./routes/smartContractdeploy')
+var smartContractRoute = require('./routes/smartContractdeploy')
 var app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
- 
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+logger.info('welcome to loggesr')
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/deploySmartContarct',smartContractRoute);
+app.use('/api/deploySmartContarct', smartContractRoute);
 
 module.exports = app;

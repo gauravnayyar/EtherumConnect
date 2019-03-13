@@ -7,14 +7,14 @@
     },
     "produces": ["application/json"],
     "host": "localhost:3000",
-    "basePath": "/api/swagger/v1",
+    "basePath": "/api",
     "paths": {
-      "/test1": {
+      "/deploySmartContarct": {
         "get": {
           "x-swagger-router-controller": "middleware-name1",
           "operationId": "swagTest",
-          "tags": ["/test"],
-          "description": "",
+          "tags": ["deploySmartContract"],
+          "description": "deploy smart contract",
           "parameters": [],
           "responses": {}
         }
