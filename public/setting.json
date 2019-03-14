@@ -1,6 +1,7 @@
 {
 
-    "ethereumUri" : "http://localhost:9090",
+//    // "ethereumUri" : "http://3.16.21.224:30304",
+    "ethereumUri" : "http://127.0.0.1:30304",
     "address" : "0x004ec07d2329997267Ec62b4166639513386F32E",
     "privateKEY":"privatekey"
 }
