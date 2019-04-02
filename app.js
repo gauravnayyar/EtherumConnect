@@ -3,13 +3,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 const log4js = require('log4js');
 
-
+var logger = log4js.getLogger('app');
 log4js.configure({
     appenders: { app: { type: 'file', filename: './logs/app.log' } },
-    categories: { default: { appenders: ['app'], level: 'error' } }
+    categories: { default: { appenders: ['app'], level: 'all' } }
   });
   
-var logger = log4js.getLogger('app');
+  
+
  
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
