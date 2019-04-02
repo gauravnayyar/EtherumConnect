@@ -3,32 +3,15 @@ var router = express.Router();
 let fs = require("fs");
 const Web3 = require('web3');
 const net = require('net');
-
-
-
- //var web3 =new Web3();
+//var Web3EthAccounts = require('web3-eth-accounts');
 const log4js = require('log4js');
-var obj = require("../public/setting.json");
-
-// log4js.configure({
-//     appenders: { smartcontract: { type: 'file', filename: './logs/smartcontract.log' } },
-//     categories: { default: { appenders: ['smartcontract'], level: 'all' } }
-//   });
-  
+var obj = require("../public/setting.json");  
 var logger = log4js.getLogger('smartcontract');
 var web3 = new Web3(obj.ethereumUri);
+ 
+console.log(web3.eth.getAccounts());;
 
-console.log(web3.providers.HttpProvider.prototype.isConnected());
-  
-/*
-* connect to ethereum node
-*/ 
-
-
-
-
-
-router.get('/', (req, res, next)=> {
+router.get('/Status', (req, res, next)=> {
   
   debugger
   if(web3.providers.HttpProvider.prototype.isConnected()==false){
@@ -42,8 +25,14 @@ router.get('/', (req, res, next)=> {
   
   });
 
+  router.post('/createAccount', (req, res, next)=> {
+ //web3.eth.personal.newAccount();
+    res.send("return from createAccount");   
+    });
 
-
+    router.get('/getAccounts', (req, res, next)=> {
+         res.send(JSON.stringify(web3.eth.accounts()));
+         });
 
 
 module.exports = router;

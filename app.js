@@ -14,12 +14,12 @@ log4js.configure({
  
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var smartContractRoute = require('./routes/smartContractdeploy')
+var ethereumMethods = require('./routes/ethereumMethods')
 var app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 app.use(express.json());
@@ -29,6 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 logger.info('welcome to loggesr')
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/deploySmartContarct', smartContractRoute);
+app.use('/api/ethereum', ethereumMethods);
 
 module.exports = app;

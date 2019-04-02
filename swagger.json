@@ -1,23 +1,51 @@
 {
-    "swagger": "2.0",
-    "info": {
-      "title": "EthereumConnect",
-      "description": "NA",
-      "version": "1.0"
+  "swagger": "2.0",
+  "info": {
+    "title": "EthereumConnect",
+    "description": "NA",
+    "version": "1.0"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "paths": {
+    "/ethereum/Status": {
+      "get": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "EthereumStatus",
+        "tags": [
+          "Ethereum Basic"
+        ],
+        "description": "Check The Status of Ethreum Connected",
+        "parameters": [],
+        "responses": {}
+      }
     },
-    "produces": ["application/json"],
-    "host": "localhost:3000",
-    "basePath": "/api",
-    "paths": {
-      "/deploySmartContarct": {
-        "get": {
-          "x-swagger-router-controller": "middleware-name1",
-          "operationId": "swagTest",
-          "tags": ["deploySmartContract"],
-          "description": "deploy smart contract",
-          "parameters": [],
-          "responses": {}
-        }
+    "/ethereum/createAccount": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "Acoount Creation",
+        "tags": [
+          "Ethereum Basic"
+        ],
+        "description": "To create The account",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/ethereum/getAccounts": {
+      "get": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "Acoount Creation",
+        "tags": [
+          "Ethereum Basic"
+        ],
+        "description": "Get Account Details",
+        "parameters": [],
+        "responses": {}
       }
     }
- }
+  }
+}
