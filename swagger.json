@@ -38,7 +38,7 @@
     "/ethereum/getAccounts": {
       "get": {
         "x-swagger-router-controller": "middleware-name1",
-        "operationId": "Acoount Creation",
+        "operationId": "Account View",
         "tags": [
           "Ethereum Basic"
         ],
