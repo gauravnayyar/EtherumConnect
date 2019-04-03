@@ -9,6 +9,7 @@ var obj = require("../public/setting.json");
 var logger = log4js.getLogger('smartcontract');
 var web3 = new Web3(new Web3.providers.HttpProvider(obj.ethereumUri));
 
+
 router.get('/Status', (req, res, next) => {
   if (web3.providers.HttpProvider.prototype.isConnected() == false) {
     logger.error("Error occured while connecting to etherum");
@@ -23,8 +24,16 @@ router.get('/Status', (req, res, next) => {
 });
 
 router.post('/createAccount', (req, res, next) => {
-  //web3.eth.personal.newAccount();
-  res.send("return from createAccount");
+web3.personal.newAccount(req.body.password,function(err,cb){
+  if (err) {
+    logger.error(err);
+    res.send("Error occured Please check the logs ")
+  }
+  else {
+    logger.error("Account Create Succsfully");
+    res.send(cb);
+  }
+});
 });
 
 router.get('/getAccounts', (req, res, next) => {
