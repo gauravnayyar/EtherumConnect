@@ -1,14 +1,42 @@
-pragma solidity ^0.4.0;
-contract Token {
-    mapping (address => uint) public balances;
-    function Token() {
-        balances[msg.sender] = 1000000;
+pragma solidity >=0.4.22 < 0.7.0;
+
+contract FoodSafe
+{
+    struct Location
+    {
+            string Name;
+            uint LocationID;
+            uint PreviousLocationID;
+            uint TimeStamp;
+            string Secret;
     }
-    function transfer(address _to, uint _amount) {
-        if (balances[msg.sender] < _amount) {
-            throw;
+
+    mapping(uint => Location) Trail;
+    uint8 TrailCount=0;
+
+    function AddNewLocation(uint LocationID,string memory Name,string memory Secret) public
+    {
+        Location memory NewLocation;
+        NewLocation.Name = Name;
+        NewLocation.LocationID = LocationID;
+        NewLocation.Secret = Secret;
+        NewLocation.TimeStamp=now;
+        if(TrailCount!=0)
+        {
+            NewLocation.PreviousLocationID=Trail[TrailCount].LocationID;
+        
         }
-        balances[msg.sender] -= _amount;
-        balances[_to] += _amount;
+        Trail[TrailCount]=NewLocation;
+        TrailCount++;
+    }
+
+    function GetTrailCount() view public returns(uint8) 
+    {
+        return TrailCount;
+    } 
+
+    function GetLocation(uint8 TrailNo) view public returns (string memory ,uint,uint,uint,string memory)
+    {
+        return (Trail[TrailNo].Name, Trail[TrailNo].LocationID,Trail[TrailNo].PreviousLocationID,Trail[TrailNo].TimeStamp ,Trail[TrailNo].Secret );
     }
 }
