@@ -1,55 +1,56 @@
  var express = require('express');
 var router = express.Router();
 const fs = require("fs"),
-     // abiDecoder = require('abi-decoder'),
       Web3 = require('web3');
 
-
-//var Web3EthAccounts = require('web3-eth-accounts');
 const log4js = require('log4js');
 var obj = require("../public/setting.json");
 var logger = log4js.getLogger('smartcontract');
-
+var web3 = new Web3(new Web3.providers.HttpProvider(obj.ethereumUri));
 const  solc  =  require('solc');
-let source = fs.readFileSync("./contracts/vote.sol", 'utf8');
-var solcInput = {
-    language: "Solidity",
-    sources: { 
-        contract: {
-            content: source
-        }
-     },
-    settings: {
-        optimizer: {
-            enabled: true
-        },
-        evmVersion: "byzantium",
-        outputSelection: {
-            "*": {
-              "": [
-                "legacyAST",
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode.object",
-                "evm.bytecode.sourceMap",
-                "evm.deployedBytecode.object",
-                "evm.deployedBytecode.sourceMap",
-                "evm.gasEstimates"
-              ]
-            },
-        }
+
+var content = fs.readFileSync("./contracts/vote.sol").toString();
+var input = {
+  language: 'Solidity',
+  sources: {
+    ["./contracts/vote.sol"]: {
+      content: content
     }
-};
-console.log(solcInput);
-solcInput = JSON.stringify(solcInput);
-console.log(solcInput);
+  },
+  settings: {
+    outputSelection: {
+      '*': {
+        '*': ['*']
+      }
+    }
+  }
+}
 
-var contractObject = solc.compile(solcInput);
-console.log(contractObject);
-contractObject = JSON.parse(contractObject);
+var compiled = solc.compile(JSON.stringify(input));
+var output = JSON.parse(compiled);
+var abi = output.contracts["./contracts/vote.sol"]['FoodSafe'].abi;
+ var bytecode ='0x'+ output.contracts[["./contracts/vote.sol"]]['FoodSafe'].evm.bytecode.object;
+ //console.log(bytecode);
+ var HelloWorld = web3.eth.contract(abi);
 
-console.log(contractObject);
+//  var food= HelloWorld.new(
+//    {
+// from : "0x3c558787478d4a4ff38c7765f45eccd7a5396878",
+// data:bytecode,
+// gas:'21000'
 
+//    },function (err, contract){
+//      if(err)
+//      {
+//        console.log(err)
+//      }
+//      else{
+
+     
+//     console.log(contract);
+//      }
+//    });
+//   console.log(food);
+ 
+//console.log(food);
 module.exports=router; 

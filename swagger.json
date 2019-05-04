@@ -26,9 +26,9 @@
     "/ethereum/createAccount": {
       "post": {
         "x-swagger-router-controller": "middleware-name1",
-        "operationId": "Acoount Creation",
+        "operationId": "Account Creation",
         "tags": [
-          "Ethereum Basic"
+          "Personal"
         ],
         "description": "To create The account",
         "parameters": [
@@ -41,12 +41,124 @@
         "responses": {}
       }
     },
-    "/ethereum/getAccounts": {
+    "/ethereum/unlockAccount": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "Unlock Account",
+        "tags": [
+          "Personal"
+        ],
+        "description": "To Unlock The account",
+        "parameters": [
+          {
+            
+            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
+         },
+         {
+            
+             "name": "password", "in": "formData", "required": true, "type": "string" 
+          }
+            
+          
+        ],
+        "responses": {}
+      }
+    },
+    "/ethereum/lockAccount": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "Lock Account",
+        "tags": [
+          "Personal"
+        ],
+        "description": "To Lock The account",
+        "parameters": [
+          {
+            
+            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
+         }           
+        ],
+        "responses": {}
+      }
+    },
+    "/ethereum/sign": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "sign Transaction",
+        "tags": [
+          "Personal"
+        ],
+        "description": "To Lock The account",
+        "parameters": [
+          {
+            
+            "name": "message", "in": "formData", "required": true, "type": "string" 
+         }   ,
+          {
+            
+            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
+         },
+         {
+            
+          "name": "password", "in": "formData", "required": true, "type": "string" 
+       }
+                 
+        ],
+        "responses": {}
+      }
+    },
+    
+    "/ethereum/ecRecover": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "recover transaction ",
+        "tags": [
+          "Personal"
+        ],
+        "description": "To Lock The account",
+        "parameters": [
+          {
+            
+            "name": "message", "in": "formData", "required": true, "type": "string" 
+         }   ,
+          {
+            
+            "name": "signature", "in": "formData", "required": true, "type": "string" 
+         }
+                 
+        ],
+        "responses": {}
+      }
+    },
+    
+    "/ethereum/importRawKey": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "importRawKey ",
+        "tags": [
+          "Personal"
+        ],
+        "description": "importRawKey",
+        "parameters": [
+          {
+            
+            "name": "priavteKey", "in": "formData", "required": true, "type": "string" 
+         }   ,
+          {
+            
+            "name": "password", "in": "formData", "required": true, "type": "string" 
+         }
+                 
+        ],
+        "responses": {}
+      }
+    },
+    "/ethereum/listAccounts": {
       "get": {
         "x-swagger-router-controller": "middleware-name1",
-        "operationId": "Account View",
+        "operationId": "List accounts",
         "tags": [
-          "Ethereum Basic"
+          "Personal"
         ],
         "description": "Get Account Details",
         "parameters": [],

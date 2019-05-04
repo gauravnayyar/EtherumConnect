@@ -24,29 +24,119 @@ router.get('/Status', (req, res, next) => {
 });
 
 router.post('/createAccount', (req, res, next) => {
-web3.personal.newAccount(req.body.password,function(err,cb){
-  if (err) {
-    logger.error(err);
-    res.send("Error occured Please check the logs ")
-  }
-  else {
-    logger.error("Account Create Succsfully");
-    res.send(cb);
-  }
-});
-});
-
-router.get('/getAccounts', (req, res, next) => {
-  web3.eth.getAccounts(function (err, cb) {
+  web3.personal.newAccount(req.body.password, function (err, cb) {
     if (err) {
       logger.error(err);
-      res.send("Error occured Please check the logs ")
+      res.status(err.status || 500).json({status: err.status, message: err.message})
+    }
+    else {
+      logger.info("Account Create Succsfully");
+      res.send(cb);
+    }
+  });
+});
+
+router.post('/unlockAccount', (req, res, next) => {
+
+  web3.personal.unlockAccount(req.body.accountAddress, req.body.password, 600, function (err, cb) {
+    if (err) {
+      console.log(err);
+      logger.error(err);
+      res.status(err.status || 500).json({status: err.status, message: err.message})
+     // res.send("Wrong password Please try with correct one.");
+    }
+    else {
+      if (cb == true) {
+        logger.info(req.body.accountAddress + "   unlock Successfully")
+        res.send("Unlocked successfully");
+      }
+      else {
+        logger.error(cb);
+        res.status(err.status || 500).json({status: err.status, message: err.message})
+      }
+    }
+  })
+});
+
+
+
+router.get('/listAccounts', (req, res, next) => {
+  web3.personal.getListAccounts(function (err, cb) {
+    if (err) {
+      logger.error(err);
+
+      res.status(err.status || 500).json({status: err.status, message: err.message})
     }
     else {
       res.send(cb);
     }
   });
 });
+
+router.post('/lockAccount', (req, res, next) => {
+  web3.personal.lockAccount(req.body.accountAddress,function (err, cb) {
+    if (err) {
+      logger.error(err);
+
+      res.status(err.status || 500).json({status: err.status, message: err.message})
+    }
+    else {
+      logger.info(cb);
+      res.send(cb);
+    }
+  });
+});
+
+router.post('/sign', (req, res, next) => {
+  
+  let hexmsg=Buffer.from(req.body.message, 'utf8').toString('hex');
+  console.log(hexmsg);
+hexmsg='0x'+hexmsg;
+  web3.personal.sign(hexmsg,req.body.accountAddress,req.body.password,function (err, cb) {
+    if (err) {
+      logger.error(err);
+
+      res.status(err.status || 500).json({status: err.status, message: err.message})
+    }
+    else {
+      logger.info(cb);
+      res.send(cb);
+    }
+  });
+});
+router.post('/ecRecover', (req, res, next) => {
+  
+  let hexmsg=Buffer.from(req.body.message, 'utf8').toString('hex');
+  console.log(hexmsg);
+   hexmsg='0x'+hexmsg;
+  web3.personal.ecRecover(hexmsg,req.body.signature,function (err, cb) {
+    if (err) {
+      logger.error(err);
+
+      res.status(err.status || 500).json({status: err.status, message: err.message})
+    }
+    else {
+      logger.info(cb);
+      res.send(cb);
+    }
+  });
+});
+router.post('/importRawKey', (req, res, next) => {
+  
+  
+  web3.personal.importRawKey(req.body.privateKey,req.body.password,function (err, cb) {
+    if (err) {
+      logger.error(err);
+
+      res.status(err.status || 500).json({status: err.status, message: err.message})
+    }
+    else {
+      logger.info(cb);
+      res.send(cb);
+    }
+  });
+});
+
 
 
 module.exports = router;
