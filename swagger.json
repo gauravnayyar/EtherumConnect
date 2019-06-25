@@ -33,10 +33,11 @@
         "description": "To create The account",
         "parameters": [
           {
-             "name": "password", "in": "formData", "required": true, "type": "string" 
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
           }
-            
-          
         ],
         "responses": {}
       }
@@ -51,15 +52,17 @@
         "description": "To Unlock The account",
         "parameters": [
           {
-            
-            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
-         },
-         {
-            
-             "name": "password", "in": "formData", "required": true, "type": "string" 
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
           }
-            
-          
         ],
         "responses": {}
       }
@@ -74,9 +77,11 @@
         "description": "To Lock The account",
         "parameters": [
           {
-            
-            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
-         }           
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {}
       }
@@ -91,23 +96,64 @@
         "description": "To Lock The account",
         "parameters": [
           {
-            
-            "name": "message", "in": "formData", "required": true, "type": "string" 
-         }   ,
+            "name": "message",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
           {
-            
-            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
-         },
-         {
-            
-          "name": "password", "in": "formData", "required": true, "type": "string" 
-       }
-                 
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {}
       }
     },
-    
+    "/ethereum/sendTransaction": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "send Transaction",
+        "tags": [
+          "Personal"
+        ],
+        "description": "To send the transaction",
+        "parameters": [
+          {
+            "name": "fromAccount",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "toAccount",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "etherAmount",
+            "in": "formData",
+            "required": true,
+            "type": "double"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/ethereum/ecRecover": {
       "post": {
         "x-swagger-router-controller": "middleware-name1",
@@ -118,19 +164,21 @@
         "description": "To Lock The account",
         "parameters": [
           {
-            
-            "name": "message", "in": "formData", "required": true, "type": "string" 
-         }   ,
+            "name": "message",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
           {
-            
-            "name": "signature", "in": "formData", "required": true, "type": "string" 
-         }
-                 
+            "name": "signature",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {}
       }
     },
-    
     "/ethereum/importRawKey": {
       "post": {
         "x-swagger-router-controller": "middleware-name1",
@@ -141,14 +189,17 @@
         "description": "importRawKey",
         "parameters": [
           {
-            
-            "name": "priavteKey", "in": "formData", "required": true, "type": "string" 
-         }   ,
+            "name": "priavteKey",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
           {
-            
-            "name": "password", "in": "formData", "required": true, "type": "string" 
-         }
-                 
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {}
       }

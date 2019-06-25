@@ -16,7 +16,7 @@ router.get('/Status', (req, res, next) => {
     res.send("Not Connected Error Occured ")
     throw new Error('unable to connect to ethereum node at ' + ethereumUri);
   } else {
-    logger.info("Successfully connected to etherum");
+    logger.info("Successfully connected to ethereum");
     res.send("connected");
 
   }
@@ -123,8 +123,26 @@ router.post('/ecRecover', (req, res, next) => {
 });
 router.post('/importRawKey', (req, res, next) => {
   
+  let hexKey= Buffer.from(req.body.privateKey, 'utf8').toString('hex');
+  console.log(hexKey)
+  web3.personal.importRawKey(hexKey,req.body.password,function (err, cb) {
+    if (err) {
+      logger.error(err.Error);
+
+res.write(err.status);
+      //res.status(err.status).json({status: err.status, message: err.message})
+    }
+    else {
+      logger.info(cb);
+      res.send(cb);
+    }
+    res.end();
+  });
+});
+router.post('/sendTransaction', (req, res, next) => {
+  var tx = {from: req.body.fromAccount, to: req.body.toAccount, value: web3.toWei(req.body.etherAmount, "ether")}
   
-  web3.personal.importRawKey(req.body.privateKey,req.body.password,function (err, cb) {
+  web3.personal.sendTransaction(tx,req.body.password ,function(err,cb){
     if (err) {
       logger.error(err);
 
