@@ -142,7 +142,7 @@
             "name": "etherAmount",
             "in": "formData",
             "required": true,
-            "type": "double"
+            "type": "string"
           },
           {
             "name": "password",
