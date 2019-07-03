@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-let fs = require("fs");
 const Web3 = require('web3');
-const net = require('net');
+
 //var Web3EthAccounts = require('web3-eth-accounts');
 const log4js = require('log4js');
 var obj = require("../public/setting.json");

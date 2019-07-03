@@ -16,6 +16,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ethereumMethods = require('./routes/ethereumMethods')
 var deployContracts= require('./routes/deployContracts');
+var ethereumMiner =require('./routes/miner');
 var app = express();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
@@ -32,5 +33,5 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/ethereum', ethereumMethods);
 app.use('/api/deployContracts',deployContracts)
-
+app.use('/api/miner/',ethereumMiner);
 module.exports = app;
