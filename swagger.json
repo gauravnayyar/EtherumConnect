@@ -215,6 +215,25 @@
         "parameters": [],
         "responses": {}
       }
+    },
+    "/miner/setEtherbase": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "For set EtherBase",
+        "tags": [
+          "Miner"
+        ],
+        "description": "For set EtherBase",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
     }
   }
 }
