@@ -37,7 +37,7 @@ router.post('/createAccount', (req, res, next) => {
 
 router.post('/unlockAccount', (req, res, next) => {
 
-  web3.personal.unlockAccount(req.body.accountAddress, req.body.password, 600, function (err, cb) {
+  web3.personal.unlockAccount(req.body.accountAddress, req.body.password,0, function (err, cb) {
     if (err) {
       console.log(err);
       logger.error(err);

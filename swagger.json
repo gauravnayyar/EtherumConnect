@@ -234,6 +234,24 @@
         ],
         "responses": {}
       }
+    },
+    "/Contracts/deployContract": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for deploy contarct dyanmic ",
+        "tags": [
+          "Contract"
+        ],
+        "description": "for deploy contarct dyanmic",
+        "parameters": [
+          {"name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"}
+        ],
+        "responses": {}
+      }
     }
+
   }
 }

@@ -32,6 +32,6 @@ logger.info('welcome to loggesr')
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/ethereum', ethereumMethods);
-app.use('/api/deployContracts',deployContracts)
+app.use('/api/Contracts',deployContracts)
 app.use('/api/miner/',ethereumMiner);
 module.exports = app;
