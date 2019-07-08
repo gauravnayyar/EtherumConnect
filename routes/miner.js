@@ -15,19 +15,19 @@ const miner = new Miner(provider,net);
 //console.log(Miner);
 //const miner =  new Miner(obj.ethereumUri);
 
-console.log(miner);
+// console.log(miner);
 
-Miner.startMining('0x1', function (err,cb)
-{
-    if(err)
-    {
-        console.log(err);
-    }
-    else{
-        console.log(cb);
-    }
+// Miner.startMining('0x1', function (err,cb)
+// {
+//     if(err)
+//     {
+//         console.log(err);
+//     }
+//     else{
+//         console.log(cb);
+//     }
 
-});
+// });
 
 
 

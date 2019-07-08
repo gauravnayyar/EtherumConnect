@@ -243,11 +243,36 @@
           "Contract"
         ],
         "description": "for deploy contarct dyanmic",
+        "content": "multipart/form-data",
         "parameters": [
-          {"name": "accountAddress",
+          {
+            "name": "accountAddress",
             "in": "formData",
             "required": true,
-            "type": "string"}
+            "type": "string"
+          }
+              
+        ],
+        "responses": {}
+      }
+    },
+    "/Contracts/method": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for transaction ",
+        "tags": [
+          "Contract"
+        ],
+        "description": "for deploy contarct dyanmic",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+              
         ],
         "responses": {}
       }

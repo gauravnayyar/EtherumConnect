@@ -15,11 +15,11 @@ const  solc  =  require('solc');
 router.post('/deployContract', (req, res, next) => {
 
   console.log(req);
-    var content = fs.readFileSync("./contracts/vote.sol").toString();
+    var content = fs.readFileSync("./contracts/demo.sol").toString();
     var input = {
       language: 'Solidity',
       sources: {
-        ["./contracts/vote.sol"]: {
+        ["./contracts/demo.sol"]: {
           content: content
         }
       },
@@ -37,8 +37,8 @@ router.post('/deployContract', (req, res, next) => {
     
   //  console.log(output);
     
-    var abi = output.contracts["./contracts/vote.sol"]['FoodSafe'].abi;
-     var bytecode ='0x'+ output.contracts[["./contracts/vote.sol"]]['FoodSafe'].evm.bytecode.object;
+    var abi = output.contracts["./contracts/demo.sol"]['SimpleStorage'].abi;
+     var bytecode ='0x'+ output.contracts[["./contracts/demo.sol"]]['SimpleStorage'].evm.bytecode.object;
      //console.log(bytecode);
      var HelloWorld = web3.eth.contract(abi);
     
@@ -74,5 +74,46 @@ else{
   
 
 });
-  //console.log(food);
+
+
+
+router.post('/method' , (req,res,next) =>
+{
+  var content = fs.readFileSync("./contracts/demo.sol").toString();
+    var input = {
+      language: 'Solidity',
+      sources: {
+        ["./contracts/demo.sol"]: {
+          content: content
+        }
+      },
+      settings: {
+        outputSelection: {
+          '*': {
+            '*': ['*']
+          }
+        }
+      }
+    }
+    
+    var compiled = solc.compile(JSON.stringify(input));
+    var output = JSON.parse(compiled);
+    
+  //  console.log(output);
+    
+    var abi = output.contracts["./contracts/demo.sol"]['SimpleStorage'].abi;
+    var contract = web3.eth.contract(abi).at("0xe8664f3401e8da87d84fc42ea4def263beed687c");
+    contract.set3.sendTransaction(2,{
+      from:web3.eth.accounts[0],
+      gas:6800000},function (error, result){ //get callback from function which is your transaction key
+          if(!error){
+              console.log(result);
+              res.send(result);
+          } else{
+              console.log(error);
+              res.send(error);
+          }
+          
+  });
+})
 module.exports=router; 
