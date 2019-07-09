@@ -276,6 +276,48 @@
         ],
         "responses": {}
       }
+    },
+    "/eth/getTransaction": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for getting transaction details ",
+        "tags": [
+          "ETH"
+        ],
+        "description": "for getting transaction details",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "trnsactionHash",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+              
+        ],
+        "responses": {}
+      }
+    },
+    "/eth/getTransactionList": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for getting transaction details ",
+        "tags": [
+          "ETH"
+        ],
+        "description": "for getting transaction details",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+              
+        ],
+        "responses": {}
+      }
     }
 
   }

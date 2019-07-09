@@ -30,5 +30,5 @@ app.use('/users', usersRouter);
 app.use('/api/ethereum', ethereumMethods);
 app.use('/api/Contracts',deployContracts)
 app.use('/api/miner/',ethereumMiner);
-app.use('/api/eth/',ethMethods);
+app.use('/api/eth',ethMethods);
 module.exports = app;
