@@ -1,13 +1,25 @@
-pragma solidity >=0.4.22 < 0.7.0;
+pragma solidity ^0.5.0;
 
-contract SimpleStorage {
-    uint storedData;
-uint xyz;
-    function set(uint x) public {
-        storedData = x;
+contract parent{
+    uint parentNumber=534334;
+    function getNumbersec() public view returns (uint){
+        return parentNumber;
     }
+    // function getNumbersec() public  returns (uint){
+    //     return 3;
+    // }
+}
 
-    function get() public view returns (uint) {
-        return storedData;
+contract kid is parent{
+    
+    uint kidNumber=34343;
+    function getNumber() public view returns (uint){
+        return parent.getNumbersec(); //searches for this function on the parent
     }
 }
+
+// contract test is parent, kid{
+//     function callNumber() public view returns (uint){
+//         return getNumber();
+//     }
+// }

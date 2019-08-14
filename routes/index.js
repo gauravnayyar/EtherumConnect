@@ -9,7 +9,7 @@ var router = express.Router();
 
 router.get('/logs', function(req, res, next) {
 
-  res.sendFile(path.join('C:/Users/admin_2/Gaurav/Node/etherumConnect/EtherumConnect/logs/'));
+  res.sendFile(path.join('C:\Users\admin_2\Gaurav\Node\etherumConnect\EtherumConnectlogs/'));
 
  });
 

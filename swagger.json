@@ -277,6 +277,27 @@
         "responses": {}
       }
     },
+    "/Contracts/upload": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for transaction ",
+        "tags": [
+          "Contract"
+        ],
+        "description": "for deploy contarct dyanmic",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "sampleFile",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+              
+        ],
+        "responses": {}
+      }
+    },
     "/eth/getTransaction": {
       "post": {
         "x-swagger-router-controller": "middleware-name1",
