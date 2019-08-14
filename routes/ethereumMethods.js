@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-let fs = require("fs");
 const Web3 = require('web3');
-const net = require('net');
+
 //var Web3EthAccounts = require('web3-eth-accounts');
 const log4js = require('log4js');
 var obj = require("../public/setting.json");
@@ -16,7 +15,7 @@ router.get('/Status', (req, res, next) => {
     res.send("Not Connected Error Occured ")
     throw new Error('unable to connect to ethereum node at ' + ethereumUri);
   } else {
-    logger.info("Successfully connected to etherum");
+    logger.info("Successfully connected to ethereum");
     res.send("connected");
 
   }
@@ -38,7 +37,7 @@ router.post('/createAccount', (req, res, next) => {
 
 router.post('/unlockAccount', (req, res, next) => {
 
-  web3.personal.unlockAccount(req.body.accountAddress, req.body.password, 600, function (err, cb) {
+  web3.personal.unlockAccount(req.body.accountAddress, req.body.password,0, function (err, cb) {
     if (err) {
       console.log(err);
       logger.error(err);
@@ -123,8 +122,26 @@ router.post('/ecRecover', (req, res, next) => {
 });
 router.post('/importRawKey', (req, res, next) => {
   
+  let hexKey= Buffer.from(req.body.privateKey, 'utf8').toString('hex');
+  console.log(hexKey)
+  web3.personal.importRawKey(hexKey,req.body.password,function (err, cb) {
+    if (err) {
+      logger.error(err.Error);
+
+res.write(err.status);
+      //res.status(err.status).json({status: err.status, message: err.message})
+    }
+    else {
+      logger.info(cb);
+      res.send(cb);
+    }
+    res.end();
+  });
+});
+router.post('/sendTransaction', (req, res, next) => {
+  var tx = {from: req.body.fromAccount, to: req.body.toAccount, value: web3.toWei(req.body.etherAmount, "ether")}
   
-  web3.personal.importRawKey(req.body.privateKey,req.body.password,function (err, cb) {
+  web3.personal.sendTransaction(tx,req.body.password ,function(err,cb){
     if (err) {
       logger.error(err);
 

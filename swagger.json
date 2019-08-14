@@ -33,10 +33,11 @@
         "description": "To create The account",
         "parameters": [
           {
-             "name": "password", "in": "formData", "required": true, "type": "string" 
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
           }
-            
-          
         ],
         "responses": {}
       }
@@ -51,15 +52,17 @@
         "description": "To Unlock The account",
         "parameters": [
           {
-            
-            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
-         },
-         {
-            
-             "name": "password", "in": "formData", "required": true, "type": "string" 
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
           }
-            
-          
         ],
         "responses": {}
       }
@@ -74,9 +77,11 @@
         "description": "To Lock The account",
         "parameters": [
           {
-            
-            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
-         }           
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {}
       }
@@ -91,23 +96,64 @@
         "description": "To Lock The account",
         "parameters": [
           {
-            
-            "name": "message", "in": "formData", "required": true, "type": "string" 
-         }   ,
+            "name": "message",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
           {
-            
-            "name": "accountAddress", "in": "formData", "required": true, "type": "string" 
-         },
-         {
-            
-          "name": "password", "in": "formData", "required": true, "type": "string" 
-       }
-                 
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {}
       }
     },
-    
+    "/ethereum/sendTransaction": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "send Transaction",
+        "tags": [
+          "Personal"
+        ],
+        "description": "To send the transaction",
+        "parameters": [
+          {
+            "name": "fromAccount",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "toAccount",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "etherAmount",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/ethereum/ecRecover": {
       "post": {
         "x-swagger-router-controller": "middleware-name1",
@@ -118,19 +164,21 @@
         "description": "To Lock The account",
         "parameters": [
           {
-            
-            "name": "message", "in": "formData", "required": true, "type": "string" 
-         }   ,
+            "name": "message",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
           {
-            
-            "name": "signature", "in": "formData", "required": true, "type": "string" 
-         }
-                 
+            "name": "signature",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {}
       }
     },
-    
     "/ethereum/importRawKey": {
       "post": {
         "x-swagger-router-controller": "middleware-name1",
@@ -141,14 +189,17 @@
         "description": "importRawKey",
         "parameters": [
           {
-            
-            "name": "priavteKey", "in": "formData", "required": true, "type": "string" 
-         }   ,
+            "name": "priavteKey",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
           {
-            
-            "name": "password", "in": "formData", "required": true, "type": "string" 
-         }
-                 
+            "name": "password",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
         ],
         "responses": {}
       }
@@ -164,6 +215,131 @@
         "parameters": [],
         "responses": {}
       }
+    },
+    "/miner/setEtherbase": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "For set EtherBase",
+        "tags": [
+          "Miner"
+        ],
+        "description": "For set EtherBase",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/Contracts/deployContract": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for deploy contarct dyanmic ",
+        "tags": [
+          "Contract"
+        ],
+        "description": "for deploy contarct dyanmic",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+              
+        ],
+        "responses": {}
+      }
+    },
+    "/Contracts/method": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for transaction ",
+        "tags": [
+          "Contract"
+        ],
+        "description": "for deploy contarct dyanmic",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+              
+        ],
+        "responses": {}
+      }
+    },
+    "/Contracts/upload": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for transaction ",
+        "tags": [
+          "Contract"
+        ],
+        "description": "for deploy contarct dyanmic",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "sampleFile",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+              
+        ],
+        "responses": {}
+      }
+    },
+    "/eth/getTransaction": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for getting transaction details ",
+        "tags": [
+          "ETH"
+        ],
+        "description": "for getting transaction details",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "trnsactionHash",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+              
+        ],
+        "responses": {}
+      }
+    },
+    "/eth/getTransactionList": {
+      "post": {
+        "x-swagger-router-controller": "middleware-name1",
+        "operationId": "for getting transaction details ",
+        "tags": [
+          "ETH"
+        ],
+        "description": "for getting transaction details",
+        "content": "multipart/form-data",
+        "parameters": [
+          {
+            "name": "accountAddress",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          }
+              
+        ],
+        "responses": {}
+      }
     }
+
   }
 }
